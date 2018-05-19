@@ -1,0 +1,19 @@
+.starting {
+    color: grey;
+}
+
+.running {
+    color: blue;
+}
+
+.cancelled {
+    color: orange;
+}
+
+.done {
+    color: green;
+}
+
+.error {
+    color: red;
+}

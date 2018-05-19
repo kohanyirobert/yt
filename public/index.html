@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="index.css">
+</head>
+
+<body>
+    <div id="app" class="container vertical">
+        <h1>Input</h1>
+        <form id="form" class="container horizontal" v-on:submit.prevent="download">
+            <input id="url" type="url" placeholder="Source" required v-model="url">
+            <input id="out" placeholder="Destination" required v-model="out">
+            <button type="submit">Download</button>
+            <button type="reset">Reset</button>
+        </form>
+        <h1>Jobs</h1>
+        <p v-if="jobs.length === 0">No jobs</p>
+        <ul v-else>
+            <job-item v-for="job in jobs"
+                      v-bind:key="job.pid"
+                      v-bind:job="job"></job-item>
+        </ul>
+        <button v-on:click="toggleDebug">Debug</button>
+        <pre v-if="debugEnabled">{{ jobs }}</pre>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"
+            integrity="sha384-uDHwRgVGzCbHUyl2dKQHqgCAab0OIx/w9PqT3pvjaX/ZGARjKanO5mJGjmdixblb"
+            crossorigin="anonymous"></script>
+    <script src="index.js"></script>
+</body>
+
+</html>
