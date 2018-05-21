@@ -1,12 +1,17 @@
 function refresh() {
-    fetch('jobs').then((res) => res.json()).then((data) => {
+    fetch('jobs', {
+        credentials: 'same-origin'
+    }).then((res) => {
+        return res.json()
+    }).then((data) => {
         this.jobs = data
-    })
+    }).catch(console.error)
 }
 
 function download() {
     fetch('jobs', {
         method: 'POST',
+        credentials: 'same-origin',
         headers: {
             'Content-Type': 'application/json'
         },
@@ -15,11 +20,16 @@ function download() {
             out: this.out
         })
     }).then(console.log)
+    .catch(console.error)
 }
 
 function cancel() {
     if (confirm('Cancel?')) {
-        fetch(`jobs/${this.job.pid}`, {method: 'DELETE'}).then(console.log)
+        fetch(`jobs/${this.job.pid}`, {
+            method: 'DELETE',
+            credentials: 'same-origin'
+        }).then(console.log)
+        .catch(console.error)
     }
 }
 
